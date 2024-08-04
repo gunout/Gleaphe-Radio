@@ -127,10 +127,68 @@ body {
         <br />
 	<button id="shareBtn">Share Screen</button>
  <h1>Crips or die . . .</h1>
-</body 
-	<button onclick="self.location.href='https://gunout.github.io/Screencast';">S C R E E N C A S T</button>
-
-</body>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>ckplayer</title>
+		<link type="text/css" rel="stylesheet" href="ckplayer/css/ckplayer.css" />
+		<!--
+		<script type="text/javascript" src="ckplayer/language/en.js" charset="UTF-8"></script>
+		-->
+		<script type="text/javascript" src="ckplayer/js/ckplayer.min.js" charset="UTF-8"></script>
+	</head>
+	<body>
+		
+		<div class="video" style="width: 100%; height: 500px;max-width: 800px;">播放容器</div>
+		<script>
+    			var videoObject = {
+    				container: '.video', //容器的ID或className
+    				plug:'hls.js',//设置使用hls插件
+    				video:'https://stream.ecable.tv/afrobeats/index.m3u8'
+    			};
+    			new ckplayer(videoObject);
+    		</script>
+			<script>
+			var player=new ckplayer(videoObject)//player
+			
+			player.play(function(){
+				document.getElementById('state').innerHTML='监听到播放';
+			});
+			player.pause(function(){
+				document.getElementById('state').innerHTML='监听到暂停';
+			});
+			player.volume(function(vol){
+				document.getElementById('state').innerHTML='监听到音量改变：'+vol;
+			});
+			player.muted(function(b){
+				document.getElementById('state2').innerHTML='监听到静音状态：'+b;
+			});
+			player.full(function(b){
+				document.getElementById('state').innerHTML='监听到全屏状态：'+b;
+			});
+			player.ended(function(){
+				document.getElementById('state').innerHTML='监听到播放结束';
+			});
+		</script>
+		<p><a href="https://www.ckplayer.com" target="_blank">www.ckplayer.com</a></p>
+		<p><a href="https://www.ckplayer.com/manual/" target="_blank">www.ckplayer.com/manual/</a></p>
+		<p><a href="https://bbs.ckplayer.com/" target="_blank">bbs.ckplayer.com</a></p>
+		<p><a href="https://www.ckplayer.com/demo.html" target="_blank">www.ckplayer.com/demo.html</a></p>
+		<p>
+			<button type="button" onclick="player.play()" >play</button>
+			<button type="button" onclick="player.pause()" >pause</button>
+			<button type="button" onclick="player.seek(20)" >seek</button>
+			<button type="button" onclick="player.volume(0.6)">volume</button>
+			<button type="button" onclick="player.muted()">sourdine</button>
+			<button type="button" onclick="player.exitMuted()">exit muted</button>
+			<button type="button" onclick="player.full()">full</button>
+			<button type="button" onclick="player.webFull()">webfull</button>
+			<button type="button" onclick="player.theatre()">theatre</button>
+			<button type="button" onclick="player.exitTheatre()">sortie</button>
+		</p>
+		<p id="state"></p>
+		<p id="state2"></p>
+	</body>
 </body>
 </body>
 </html>
